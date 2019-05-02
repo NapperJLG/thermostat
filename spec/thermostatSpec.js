@@ -54,11 +54,60 @@ describe('Thermostat', function(){
  });
 
  it('has a maximum temperature non power saver temperature',function(){
-     thermostat.powerSavingOff(); 
+     thermostat.powerSavingOff();
      for (var i = 0; i < 13; i++){
      thermostat.up();
      }
      expect(thermostat.currentTemperature()).toEqual(32);
    });
+
+
+  it("can reset the temperature with a reset",function(){
+    thermostat.up();
+    thermostat.tempReset();
+    expect(thermostat.currentTemperature()).toEqual(20);
+  });
+
+  it('is in low energy useage at 10', function(){
+    for (var i = 0; i < 10; i++){
+    thermostat.down();
+    }
+    expect(thermostat.currentTemperature()).toEqual(10);
+    expect(thermostat.energyUsage()).toEqual("low");
+  });
+
+  it('is in low energy useage at 17', function(){
+    for (var i = 0; i < 3; i++){
+    thermostat.down();
+    }
+    expect(thermostat.currentTemperature()).toEqual(17);
+    expect(thermostat.energyUsage()).toEqual("low");
+  });
+
+  it('is in medium energy useage', function(){
+  for (var i = 0; i < 2; i++){
+  thermostat.down();
+  }
+  expect(thermostat.currentTemperature()).toEqual(18);
+  expect(thermostat.energyUsage()).toEqual("medium");
+  });
+
+  it('is in medium energy useage', function(){
+  for (var i = 0; i < 4; i++){
+  thermostat.up();
+  }
+  expect(thermostat.currentTemperature()).toEqual(24);
+  expect(thermostat.energyUsage()).toEqual("medium");
+  });
+
+
+  it('is in high energy useage', function(){
+  for (var i = 0; i < 5; i++){
+  thermostat.up();
+  }
+  expect(thermostat.currentTemperature()).toEqual(25);
+  expect(thermostat.energyUsage()).toEqual("high");
+  });
+
 
  });

@@ -4,6 +4,7 @@ function Thermostat(){
   this.MINIMUM_TEMPERATURE = 10;
   this.MAXIMUM_TEMPERATURE = 32;
   this.PS_MAX_TEMPERATURE = 25;
+  this.DEFAULT_TEMPERATURE = 20;
   this.temperature = 20;
   this.powerSaving = true;
 }
@@ -51,4 +52,24 @@ Thermostat.prototype.powerSavingOff = function () {
 
 Thermostat.prototype.powerSavingOn = function () {
   this.powerSaving = true;
+};
+
+Thermostat.prototype.tempReset = function () {
+  this.temperature = this.DEFAULT_TEMPERATURE;
+};
+
+Thermostat.prototype.energyUsage = function () {
+  if(this.currentTemperature() < 18){
+
+  return "low";
+  }
+  else if(this.currentTemperature() >= 18 && this.currentTemperature() < 25){
+
+  return "medium";
+
+  } else {
+
+  return "high";
+
+  };
 };
