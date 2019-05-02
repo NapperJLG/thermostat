@@ -31,6 +31,8 @@ describe('Thermostat', function(){
    expect(thermostat.currentTemperature()).toEqual(10);
  });
 
+describe('Power Saver Mode', function(){
+
  it('confirms that power saver mode is on by default', function(){
    expect(thermostat.isPowerSaving()).toEqual(true);
  });
@@ -61,12 +63,21 @@ describe('Thermostat', function(){
      expect(thermostat.currentTemperature()).toEqual(32);
    });
 
+});
+
+describe('Reset Mode', function(){
+
 
   it("can reset the temperature with a reset",function(){
     thermostat.up();
     thermostat.tempReset();
     expect(thermostat.currentTemperature()).toEqual(20);
   });
+
+});
+
+describe('Low Energy Mode', function(){
+
 
   it('is in low energy useage at 10', function(){
     for (var i = 0; i < 10; i++){
@@ -108,6 +119,8 @@ describe('Thermostat', function(){
   expect(thermostat.currentTemperature()).toEqual(25);
   expect(thermostat.energyUsage()).toEqual("high");
   });
+
+}); 
 
 
  });
