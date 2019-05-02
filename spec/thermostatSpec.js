@@ -120,7 +120,6 @@ describe('Low Energy Mode', function(){
   expect(thermostat.energyUsage()).toEqual("high");
   });
 
-}); 
+});
 
-
- });
+});
