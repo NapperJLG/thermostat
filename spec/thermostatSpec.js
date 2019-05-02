@@ -46,6 +46,19 @@ describe('Thermostat', function(){
    expect(thermostat.isPowerSaving()).toEqual(true);
  });
 
- 
+ it('has a maximum power saver temperature', function(){
+   for (var i = 0; i < 6; i++){
+   thermostat.up();
+   }
+   expect(thermostat.currentTemperature()).toEqual(25);
+ });
 
-});
+ it('has a maximum temperature non power saver temperature',function(){
+     thermostat.powerSavingOff(); 
+     for (var i = 0; i < 13; i++){
+     thermostat.up();
+     }
+     expect(thermostat.currentTemperature()).toEqual(32);
+   });
+
+ });
