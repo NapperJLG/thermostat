@@ -12,17 +12,42 @@
           <h1>Thermostat</h1>
         </div>
         <div class="Display">
-          <h2>20</h2>
+          <h2 class="temp">20</h2>
           <h6>Power saving mode is<span id="power-saving-status"> on</span></h6>
         </div>
         <div class="Control_Panel">
         <p>
-            <button type="button" name="increase">+</button>
-            <button type="button" name="decrease">-</button>
-            <button type="button" name="power saver">Power Saver</button>
-            <button type="button" name="reset">Reset</button>
+            <button class="button-increase" type="button" name="increase">+</button>
+            <button class="button-decrease" type="button" name="decrease">-</button>
+            <button class="button-power-saver" type="button" name="power saver">Power Saver</button>
+            <button class="button-reset" type="button" name="reset">Reset</button>
        </p>
         </div>
 
+
+
+
     </body>
 </html>
+
+<script src="jquery.js"></script>
+<script>
+$(function() {
+
+  var thermostat = new Thermostat();
+  $('.temp').text(thermostat.temperature);
+
+  $('.button-increase')
+  .on('mousedown', function() {
+    $(this).css("background-color", "green")
+      thermostat.up()
+    $('.temp').text(thermostat.temperature)
+});
+  $('.button-increase')
+  .on('mouseup', function() {
+    $(this).css("background-color", "white");
+
+  });
+
+});
+</script>
